@@ -1,0 +1,12 @@
+commit-msg:
+  commands:
+    commitlint:
+      run: bunx --yes commitlint --edit "$1"
+
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      run: bun run lint
+    format:
+      run: bun run format
