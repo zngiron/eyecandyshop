@@ -1,6 +1,7 @@
 import { FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
 import { useEffect, useRef } from 'react';
 
+// Draw filled circles covering actual eyeballs using MediaPipe iris landmarks
 function drawLandmarksOnCanvas(
   canvas: HTMLCanvasElement,
   landmarks: Array<
@@ -15,7 +16,6 @@ function drawLandmarksOnCanvas(
   } = {},
 ) {
   const ctx = canvas.getContext('2d');
-
   if (!ctx) return;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -24,17 +24,75 @@ function drawLandmarksOnCanvas(
   ctx.fillStyle = options.color || '#000000';
   ctx.lineWidth = 1;
 
+  // MediaPipe iris landmarks for eyeball contour:
+  // 468-472 = left eye, 473-477 = right eye
+  // We'll cover the eyeballs by drawing circles whose center is 468/473 and radius is average distance to 469-472/474-477
+
+  function getAvgRadius(
+    points: {
+      x: number;
+      y: number;
+    }[],
+    centerIndex: number,
+    surroundingIndices: number[],
+  ) {
+    const center = points[centerIndex];
+    if (!center) return 0;
+    let sum = 0;
+    let count = 0;
+    for (const idx of surroundingIndices) {
+      const p = points[idx];
+      if (!p) continue;
+      const dx = (p.x - center.x) * canvas.width;
+      const dy = (p.y - center.y) * canvas.height;
+      sum += Math.sqrt(dx * dx + dy * dy);
+      count++;
+    }
+    return count > 0 ? sum / count : (options.radius ?? 8);
+  }
+
   for (const points of landmarks) {
-    for (const point of points) {
+    // Defensive check for at least right structure
+    if (!points) continue;
+
+    // Left eyeball: center 468, contour 469-472
+    const LEFT_CENTER = 468;
+    const LEFT_SURROUND = [
+      469,
+      470,
+      471,
+      472,
+    ];
+    if (points.length > Math.max(...LEFT_SURROUND, LEFT_CENTER)) {
+      const c = points[LEFT_CENTER];
+      const radius = getAvgRadius(points, LEFT_CENTER, LEFT_SURROUND);
+      const x = c.x * canvas.width;
+      const y = c.y * canvas.height;
       ctx.beginPath();
-      const x = point.x * canvas.width;
-      const y = point.y * canvas.height;
-      ctx.arc(x, y, options.radius ?? 1, 0, 2 * Math.PI);
+      ctx.arc(x, y, radius, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    // Right eyeball: center 473, contour 474-477
+    const RIGHT_CENTER = 473;
+    const RIGHT_SURROUND = [
+      474,
+      475,
+      476,
+      477,
+    ];
+    if (points.length > Math.max(...RIGHT_SURROUND, RIGHT_CENTER)) {
+      const c = points[RIGHT_CENTER];
+      const radius = getAvgRadius(points, RIGHT_CENTER, RIGHT_SURROUND);
+      const x = c.x * canvas.width;
+      const y = c.y * canvas.height;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, 2 * Math.PI);
       ctx.fill();
       ctx.closePath();
     }
   }
-
   ctx.restore();
 }
 

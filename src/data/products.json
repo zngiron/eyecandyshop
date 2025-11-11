@@ -1,0 +1,66 @@
+[
+  {
+    "id": "blue",
+    "name": "Blue Contact Lens",
+    "description": "Vibrant blue contact lenses that enhance your natural eye color with a stunning blue hue. Perfect for everyday wear or special occasions.",
+    "image": "/static/products/contact-lens-blue.png",
+    "price": 29.99,
+    "externalUrl": "https://example.com/products/blue-contact-lens"
+  },
+  {
+    "id": "brown",
+    "name": "Brown Contact Lens",
+    "description": "Rich brown contact lenses that add depth and warmth to your eyes. Ideal for a natural yet enhanced look.",
+    "image": "/static/products/contact-lens-brown.png",
+    "price": 29.99,
+    "externalUrl": "https://example.com/products/brown-contact-lens"
+  },
+  {
+    "id": "cat-eye",
+    "name": "Cat Eye Contact Lens",
+    "description": "Dramatic cat eye contact lenses for a bold, feline-inspired look. Stand out with this unique design.",
+    "image": "/static/products/contact-lens-cat-eye.png",
+    "price": 34.99,
+    "externalUrl": "https://example.com/products/cat-eye-contact-lens"
+  },
+  {
+    "id": "galaxy",
+    "name": "Galaxy Contact Lens",
+    "description": "Cosmic galaxy pattern contact lenses featuring a mesmerizing starry night design. Perfect for parties and events.",
+    "image": "/static/products/contact-lens-galaxy.png",
+    "price": 39.99,
+    "externalUrl": "https://example.com/products/galaxy-contact-lens"
+  },
+  {
+    "id": "gray",
+    "name": "Gray Contact Lens",
+    "description": "Sophisticated gray contact lenses that provide a cool, modern aesthetic. Great for a subtle yet striking appearance.",
+    "image": "/static/products/contact-lens-gray.png",
+    "price": 29.99,
+    "externalUrl": "https://example.com/products/gray-contact-lens"
+  },
+  {
+    "id": "green",
+    "name": "Green Contact Lens",
+    "description": "Vivid green contact lenses that bring out the natural beauty of your eyes with an emerald glow.",
+    "image": "/static/products/contact-lens-green.png",
+    "price": 29.99,
+    "externalUrl": "https://example.com/products/green-contact-lens"
+  },
+  {
+    "id": "hazelnut",
+    "name": "Hazelnut Contact Lens",
+    "description": "Warm hazelnut contact lenses with a natural, earthy tone. Perfect for achieving a subtle enhancement.",
+    "image": "/static/products/contact-lens-hazelnut.png",
+    "price": 29.99,
+    "externalUrl": "https://example.com/products/hazelnut-contact-lens"
+  },
+  {
+    "id": "stars",
+    "name": "Stars Contact Lens",
+    "description": "Magical star-patterned contact lenses that add a twinkling effect to your eyes. Ideal for special occasions and photos.",
+    "image": "/static/products/contact-lens-stars.png",
+    "price": 39.99,
+    "externalUrl": "https://example.com/products/stars-contact-lens"
+  }
+]

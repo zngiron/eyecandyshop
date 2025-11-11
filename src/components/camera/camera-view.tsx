@@ -2,11 +2,15 @@
 
 import { Button } from '@/components/ui/button';
 import { useCamera } from '@/hooks/useCamera';
-import { useFaceLandMarker } from '@/hooks/useFaceLandMarker';
+import { useContactLens } from '@/hooks/useContactLens';
 
-export function CameraView() {
+interface CameraViewProps {
+  selectedProductPath?: string | null;
+}
+
+export function CameraView({ selectedProductPath = null }: CameraViewProps) {
   const { videoRef, isCameraActive, startCamera, stopCamera } = useCamera();
-  const { canvasRef } = useFaceLandMarker(videoRef);
+  const { canvasRef } = useContactLens(videoRef, selectedProductPath);
 
   return (
     <div className="overflow-hidden relative size-full max-w-4xl rounded-xl aspect-video bg-muted">
