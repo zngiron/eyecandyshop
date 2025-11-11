@@ -11,7 +11,7 @@ export default function Page(_: PageProps<'/'>) {
   );
 
   return (
-    <div className="flex flex-col lg:flex-row items-start justify-center min-h-dvh px-4 sm:px-6 py-4 sm:py-8 gap-4 lg:gap-6">
+    <div className="flex flex-col lg:flex-row items-start justify-center min-h-dvh px-4 sm:px-6 py-2 sm:py-4 lg:py-8 gap-3 lg:gap-6">
       <div className="w-full lg:flex-1 lg:max-w-4xl">
         <CameraView selectedProductPath={selectedProductPath} />
       </div>

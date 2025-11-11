@@ -13,7 +13,7 @@ export function CameraView({ selectedProductPath = null }: CameraViewProps) {
   const { canvasRef } = useContactLens(videoRef, selectedProductPath);
 
   return (
-    <div className="overflow-hidden relative size-full max-w-4xl rounded-xl aspect-video bg-muted">
+    <div className="overflow-hidden relative size-full max-w-4xl rounded-xl aspect-9/16 lg:aspect-video bg-muted">
       <video
         ref={videoRef}
         className="absolute inset-0 size-full object-cover"
